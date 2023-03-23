@@ -1,5 +1,5 @@
 # Import home and dashboard from routes package
-from app.routes import home, dashboard
+from app.routes import home, dashboard, api
 # Use from ... import statement to import the Flask() function
 from flask import Flask
 from app.db import init_db
@@ -21,6 +21,8 @@ def create_app(test_config=None):
   app.jinja_env.filters['format_url'] = filters.format_url
   app.jinja_env.filters['format_date'] = filters.format_date
   app.jinja_env.filters['format_plural'] = filters.format_plural
+  # Register blueprint
+  app.register_blueprint(api)
 #   Decorator turns the function into a route
   @app.route('/hello')
     # Inner function that returns a string
